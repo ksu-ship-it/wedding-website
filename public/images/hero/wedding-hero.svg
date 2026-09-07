@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Wedding hero placeholder</title>
+  <desc id="desc">An editorial composition of a sunlit garden and abstract paper shapes.</desc>
+  <rect width="1600" height="900" fill="#d8d0c4"/>
+  <rect x="160" y="120" width="1280" height="660" rx="8" fill="#eee9df"/>
+  <circle cx="1160" cy="330" r="220" fill="#b9b19f"/>
+  <path d="M0 750C260 590 440 610 650 760S1030 940 1600 650V900H0Z" fill="#8b9276"/>
+  <path d="M220 780C380 500 500 420 650 780M520 780C690 450 790 410 920 780M840 780C1000 540 1110 470 1260 780" fill="none" stroke="#f7f3ec" stroke-width="18" opacity=".8"/>
+  <text x="800" y="220" fill="#3c3b34" font-family="Georgia, serif" font-size="48" text-anchor="middle">approved photograph to come</text>
+</svg>
