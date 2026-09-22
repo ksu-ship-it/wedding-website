@@ -11,7 +11,7 @@ import { navigationItems } from "@/content/navigation";
 import { rsvpPrompt } from "@/content/rsvp";
 import { schedule } from "@/content/schedule";
 import { storyMoments } from "@/content/story";
-import { travelGuide } from "@/content/travel";
+import { hotelRecommendations, travelGuide } from "@/content/travel";
 import { weddingEvent } from "@/content/wedding-event";
 import { AccessGate } from "@/components/access/access-gate";
 
@@ -28,12 +28,12 @@ export default function Home() {
           id="our-story"
           eyebrow="01 / Our Story"
           title="The chapters that led us here."
-          intro="A few moments from the story we are lucky enough to keep writing together."
+          intro=""
         >
           <StorySlideshow images={storyImages} moments={storyMoments} />
         </Section>
 
-        <Section
+        {/* <Section
           id="schedule"
           eyebrow="02 / Schedule"
           title="A weekend in three acts."
@@ -49,13 +49,13 @@ export default function Home() {
               </article>
             ))}
           </div>
-        </Section>
+        </Section> */}
 
         <Section
           id="travel"
           eyebrow="03 / Travel"
           title="Make a weekend of it."
-          intro="The practical notes for finding your way to the celebration."
+          intro=""
         >
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {travelGuide.map((item) => (
@@ -66,13 +66,33 @@ export default function Home() {
               </article>
             ))}
           </div>
+<div className="mt-10">
+            <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-3">
+              {hotelRecommendations.map((hotel) => (
+                <article key={hotel.id} className="flex h-full flex-col border border-dusty-blue/40 bg-white/70 p-5 shadow-[0_0_0_1px_rgba(72,95,120,0.04)]">
+                  <h4 className="mt-3 font-serif text-2xl text-deep-blue">{hotel.name}</h4>
+                  <p className="mt-3 text-sm leading-6 text-deep-blue/80">{hotel.address}</p>
+                  {hotel.note ? <p className="mt-4 text-sm leading-6 text-deep-blue/75">{hotel.note}</p> : null}
+                  <a
+                    href={hotel.website}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-5 inline-flex items-center border-b-2 border-coral pb-1 text-sm font-medium text-deep-blue transition-colors hover:text-coral justify-end"
+                  >
+                    {">>>"}
+                  </a>
+                </article>
+              ))}
+            </div>
+          </div>
+          
         </Section>
 
         <Section
           id="gallery"
           eyebrow="04 / Gallery"
           title="A place for the photographs."
-          intro="The images will arrive here as the story grows."
+          intro=""
         >
           <MasonryGallery images={galleryImages} />
         </Section>
@@ -81,15 +101,15 @@ export default function Home() {
           id="FAQ"
           eyebrow="05 / FAQ"
           title="A few useful answers."
-          intro="We will keep adding the details guests ask about most."
+          intro=""
         >
-          <div className="grid grid-cols-1">
+          <div className="grid grid-cols-1 text-center md:text-center">
             {frequentlyAskedQuestions.map((item) => (
-              <details key={item.id} open={item.defaultOpen} className="border-t border-dusty-blue/50 py-5">
-                <summary className="cursor-pointer list-none pr-8 font-serif text-2xl text-deep-blue">
+              <details key={item.id} open={item.defaultOpen} className="border-t border-dusty-blue/50 py-5 text-center md:text-center">
+                <summary className="cursor-pointer list-none pr-8 font-serif text-2xl text-deep-blue md:text-center">
                   {item.question}
                 </summary>
-                <p className="mt-4 max-w-xl text-base leading-7 text-deep-blue/75">{item.answer}</p>
+                <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-deep-blue/75 md:text-center">{item.answer}</p>
               </details>
             ))}
           </div>
@@ -98,8 +118,8 @@ export default function Home() {
         <Section
           id="RSVP"
           eyebrow="06 / RSVP"
-          title="Save your place at the table."
-          intro="Your response will help us make the weekend feel just right."
+          title="Early RSVP, formal invitation to follow."
+          intro=""
         >
           <div className="border-t border-dusty-blue/50 pt-5">
             <p className="text-sm uppercase tracking-[0.18em] text-copper">{rsvpPrompt.deadline}</p>

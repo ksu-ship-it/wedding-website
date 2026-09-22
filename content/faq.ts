@@ -4,17 +4,27 @@ export const frequentlyAskedQuestions = [
   {
     id: "dress-code",
     question: "What is the dress code?",
-    answer: "Garden formal. Wear something comfortable enough for an evening outdoors and bring a layer for later.",
+    answer: "Our wedding attire is formal.",
     defaultOpen: true,
+  },
+  {
+    id: "parking",
+    question: "Is there parking available?",
+    answer: "Yes, complimentary parking will be available at the venue. Valet service will also be offered.",
+  },
+  {
+    id: "indoor-or-outdoor",
+    question: "Is the ceremony indoors or outdoors?",
+    answer: "Our ceremony will take place outdoors, weather permitting. Please dress accordingly.",
   },
   {
     id: "children",
     question: "Are children invited?",
-    answer: "Your invitation will include the names of everyone invited. Please reach out if you have questions.",
+    answer: "While we love your little ones, our wedding will be an adults-only celebration.",
   },
   {
     id: "plus-ones",
     question: "Can I bring a plus-one?",
-    answer: "Plus-ones will be named on the invitation. We are grateful for your understanding as we plan the weekend.",
+    answer: "We are only able to accommodate the guests formally listed on your invitation and RSVP. Thank you for understanding!",
   },
 ] satisfies FAQItem[];

@@ -16,19 +16,19 @@ export function Section({ eyebrow, title, intro, children, className, ...props }
     >
       <Reveal
         direction="left"
-        className="relative isolate mx-auto grid min-h-[24rem] w-full max-w-7xl grid-cols-1 gap-10 overflow-hidden rounded-3xl bg-white/85 p-6 shadow-2xl backdrop-blur-md md:grid-cols-2 md:gap-16 md:p-10"
+        className="relative isolate mx-auto grid min-h-[24rem] w-full max-w-7xl grid-cols-1 gap-8 overflow-hidden rounded-3xl bg-white/85 p-6 shadow-2xl backdrop-blur-md md:gap-10 md:p-10"
       >
         <Reveal delay="details">
-          <header>
+          <header className="text-center md:text-center">
             <p className="text-xs font-medium uppercase tracking-[0.28em] text-copper">{eyebrow}</p>
-            <h2 className="mt-4 max-w-xl font-serif text-5xl leading-none text-deep-blue md:text-6xl">
+            <h2 className="mx-auto mt-4 max-w-xl font-serif text-5xl leading-none text-deep-blue md:text-6xl">
               {title}
             </h2>
-            {intro ? <p className="mt-6 max-w-md text-base leading-7 text-deep-blue/75">{intro}</p> : null}
+            {intro ? <p className="mx-auto mt-6 max-w-md text-base leading-7 text-deep-blue/75">{intro}</p> : null}
           </header>
         </Reveal>
         <Reveal delay="details" className="min-w-0">
-          <div>{children}</div>
+          <div className="text-center md:text-center">{children}</div>
         </Reveal>
       </Reveal>
     </section>

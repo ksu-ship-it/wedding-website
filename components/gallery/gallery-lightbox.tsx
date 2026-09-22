@@ -179,13 +179,13 @@ export function GalleryLightbox({ images }: GalleryLightboxProps) {
           return (
             <div
               key={image.id}
-              className={`group relative block min-h-0 w-full overflow-hidden rounded-xl bg-white/85 text-left ${slot.aspectClassName.split(" ")[0]} md:aspect-auto ${getCollageClass(index)}`}
+              className={`group relative block min-h-0 w-full overflow-hidden bg-white/85 text-left ${slot.aspectClassName.split(" ")[0]} md:aspect-auto ${getCollageClass(index)}`}
             >
               <Image
                 {...getResponsiveFillImageProps(image, "(max-width: 639px) 100vw, (max-width: 767px) 50vw, 33vw")}
                 fill
                 alt={image.alt}
-                className="object-contain md:object-cover transition-transform duration-[3000ms] group-hover:scale-105"
+                className="object-contain transition-transform duration-[3000ms] group-hover:scale-105 md:object-cover"
               />
             </div>
           );

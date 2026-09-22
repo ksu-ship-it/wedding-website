@@ -29,16 +29,32 @@ export function WeddingHero({ event }: WeddingHeroProps) {
         id="hero"
         className="relative isolate min-h-[42rem] overflow-hidden md:min-h-[70rem]"
       >
-        <Reveal className="relative z-10 mx-auto flex min-h-[42rem] w-full max-w-6xl flex-col justify-top px-6 py-12 text-cream md:min-h-[56rem] md:px-10 md:py-20 lg:px-16">
-          <p className="mb-6 text-xs font-bold uppercase tracking-[0.28em] text-peach">
-            The beginning of forever
-          </p>
-          <h1 className="max-w-3xl font-signature text-6xl leading-[0.9] text-cream md:text-8xl">
-            {event.coupleNames}
-          </h1>
-          {/* <p className="mt-8 max-w-xl text-base leading-7 text-cream/90 md:text-lg">
-            We are gathering the stories, places, and people that make this celebration ours.
-          </p> */}
+        <Reveal className="relative z-10 mx-auto flex min-h-[10rem] w-full max-w-6xl items-center justify-center px-6 py-12 text-cream md:min-h-[10rem] md:px-10 md:py-20 lg:px-16">
+          <div className="w-full max-w-3xl border border-white/20 bg-[rgba(47,75,88,0.22)] px-6 py-8 shadow-[0_25px_80px_rgba(0,0,0,0.12)]  md:px-12 md:py-12">
+            <p className="text-center text-[0.68rem] font-medium uppercase tracking-[0.32em] text-peach">
+              Together with their families
+            </p>
+
+            <h1 className="mt-6 text-center font-signature text-6xl leading-[0.85] text-cream md:text-8xl">
+              {event.coupleNames}
+            </h1>
+
+            <div className="mx-auto mt-6 h-px w-20 bg-white/60" aria-hidden="true" />
+
+            <p className="mt-6 text-center text-[0.7rem] font-medium uppercase tracking-[0.32em] text-cream/85">
+              invite you to celebrate
+            </p>
+
+            <div className="mt-5 flex flex-col items-center justify-center gap-2 text-center md:flex-row md:gap-4">
+              <span className="text-[0.72rem] uppercase tracking-[0.22em] text-cream/85">
+                April 24, 2027
+              </span>
+              <span className="hidden h-px w-8 bg-white/60 md:block" aria-hidden="true" />
+              <span className="text-[0.72rem] uppercase tracking-[0.22em] text-cream/85">
+                {event.locationLabel}
+              </span>
+            </div>
+          </div>
         </Reveal>
       </section>
 
@@ -47,8 +63,8 @@ export function WeddingHero({ event }: WeddingHeroProps) {
         className="mt-40 md:mt-24 px-6 py-10 md:px-10 md:py-14 lg:px-16"
                     id="event-details"
                 eyebrow="00 / Event details"
-                title="The start of something new."
-                intro="The places, times, and moments we are gathering to celebrate the beginning of forever."
+                title="The start of forever."
+                intro=""
       >
         <Reveal className="relative isolate mx-auto grid min-h-[16rem] w-full max-w-7xl grid-cols-1 gap-8 overflow-hidden bg-cream p-6 md:grid-cols-2 md:items-end md:p-10">
           <div>

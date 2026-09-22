@@ -69,6 +69,14 @@ export interface TravelGuideItem {
   link?: string;
 }
 
+export interface HotelRecommendation {
+  id: string;
+  name: string;
+  address: string;
+  website: string;
+  note?: string;
+}
+
 export interface FAQItem {
   id: string;
   question: string;

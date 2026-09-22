@@ -16,7 +16,7 @@ export function FixedHeroBackground({ image }: FixedHeroBackgroundProps) {
         alt=""
         aria-hidden="true"
         priority
-        className="object-cover object-[75%_center] md:object-center"
+        className="object-cover object-[75%_center] md:object-center lg:object-[center_75%]"
       />
       {/* <div
         // className="absolute inset-0 bg-[linear-gradient(180deg,rgba(47,75,88,0.65)_0%,rgba(47,75,88,0.16)_38%,rgba(47,75,88,0.86)_100%)]"

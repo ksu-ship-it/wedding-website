@@ -3,7 +3,7 @@
 import type { FormEvent, ReactNode } from "react";
 import { useState } from "react";
 
-const SECRET_WORD = "forever";
+const SECRET_WORD = "lenny";
 
 type AccessGateProps = {
   children: ReactNode;
