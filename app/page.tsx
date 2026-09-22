@@ -91,7 +91,7 @@ export default function Home() {
         <Section
           id="gallery"
           eyebrow="04 / Gallery"
-          title="A place for the photographs."
+          title="A place for the memories."
           intro=""
         >
           <MasonryGallery images={galleryImages} />

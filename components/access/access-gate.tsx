@@ -1,7 +1,7 @@
 "use client";
 
 import type { FormEvent, ReactNode } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const SECRET_WORD = "lenny";
 
@@ -13,6 +13,21 @@ export function AccessGate({ children }: AccessGateProps) {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [secretWord, setSecretWord] = useState("");
   const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    if (!isUnlocked) {
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
+    });
+  }, [isUnlocked]);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

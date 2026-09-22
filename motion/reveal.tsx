@@ -42,11 +42,7 @@ export function Reveal({ children, className = "", delay = "none", direction = "
         className={`transition-[opacity,transform] duration-[2000ms] ease-out motion-reduce:transform-none motion-reduce:transition-none ${
           delay === "details" ? "delay-[400ms]" : "delay-0"
         } ${
-          isVisible
-            ? "translate-x-0 translate-y-0 opacity-100"
-            : direction === "left"
-              ? "-translate-x-full opacity-0"
-              : "translate-y-8 opacity-0"
+          isVisible ? "opacity-100" : "opacity-0"
         } ${className}`}
       >
         {children}

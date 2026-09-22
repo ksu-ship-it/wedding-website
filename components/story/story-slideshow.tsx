@@ -23,7 +23,7 @@ export function StorySlideshow({ images, moments }: StorySlideshowProps) {
 
   return (
     <div className="grid grid-cols-1 gap-5">
-      <figure className="group relative aspect-[4/5] overflow-hidden bg-white/85 shadow-sm transition-shadow duration-[3000ms] hover:shadow-lg md:aspect-[3/2]">
+      <figure className="group relative mx-auto aspect-[4/5] w-full max-w-2xl overflow-hidden bg-white/85 shadow-sm transition-shadow duration-[3000ms] hover:shadow-lg md:aspect-[4/3]">
         <Image
           {...getResponsiveFillImageProps(image, "(max-width: 767px) 100vw, 50vw")}
           fill
