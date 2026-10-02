@@ -11,6 +11,7 @@ export const ATTENDANCE_STATUSES: AttendanceStatus[] = [
 ];
 
 export const MAX_NAME_LENGTH = 80;
+export const MAX_SONG_REQUEST_LENGTH = 250;
 
 export function normalizeGuestName(value: string): string {
   return value.trim().replace(/\s+/g, " ").toLocaleLowerCase("en-US");
@@ -67,6 +68,27 @@ export function validateAttendanceStatus(value: unknown): AttendanceStatus {
   return normalized as AttendanceStatus;
 }
 
+export function validateSongRequest(value: unknown): string | null {
+  if (value === undefined || value === null || value === "") {
+    return null;
+  }
+
+  if (typeof value !== "string") {
+    throw new Error("Song request must be text or empty.");
+  }
+
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return null;
+  }
+
+  if (trimmed.length > MAX_SONG_REQUEST_LENGTH) {
+    throw new Error(`Song request must be ${MAX_SONG_REQUEST_LENGTH} characters or fewer.`);
+  }
+
+  return trimmed;
+}
+
 export function assertNoUnexpectedFields(
   record: Record<string, unknown>,
   allowedFields: string[],
@@ -117,7 +139,9 @@ export function validateHouseholdSubmissionRequest(
   }
 
   const record = input as Record<string, unknown>;
-  assertNoUnexpectedFields(record, ["contactEmail", "responses", "plusOnes"]);
+  assertNoUnexpectedFields(record, ["contactEmail", "songRequest", "responses", "plusOnes"]);
+
+  const songRequest = validateSongRequest(record.songRequest);
 
   const responses = record.responses;
   if (typeof responses !== "object" || responses === null || Array.isArray(responses)) {
@@ -188,6 +212,7 @@ export function validateHouseholdSubmissionRequest(
 
   return {
     contactEmail: validateContactEmail(record.contactEmail),
+    songRequest,
     responses: normalizedResponses,
     plusOnes: normalizedPlusOnes,
   };

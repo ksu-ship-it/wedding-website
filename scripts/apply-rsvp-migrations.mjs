@@ -7,6 +7,7 @@ import { neon } from "@neondatabase/serverless";
 nextEnv.loadEnvConfig(process.cwd());
 
 const connectionString = process.env.DATABASE_URL_UNPOOLED;
+console.log("Applying RSVP migrations..." + connectionString);
 if (!connectionString) {
   throw new Error("DATABASE_URL_UNPOOLED is required to apply RSVP migrations.");
 }

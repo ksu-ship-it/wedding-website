@@ -98,6 +98,7 @@ describe("plus-one permissions", () => {
       versionId: string;
       respondedByInviteeId: string;
       contactEmail: string | null;
+      songRequest: string | null;
       responses: Record<string, "attending" | "declining" | "undecided">;
       plusOnes: Array<{ grantedToInviteeId: string; guestName: string | null; status: "attending" | "declining" | "undecided" }>;
     }) => ({
@@ -106,6 +107,7 @@ describe("plus-one permissions", () => {
       versionId: input.versionId,
       respondedByInviteeId: input.respondedByInviteeId,
       contactEmail: input.contactEmail,
+      songRequest: input.songRequest,
       submittedAt: "2026-09-30T12:00:00.000Z",
       updatedAt: "2026-09-30T12:00:00.000Z",
       responses: input.responses,
@@ -117,6 +119,7 @@ describe("plus-one permissions", () => {
     };
     const validRequest = {
       contactEmail: null,
+      songRequest: "Dreams by Fleetwood Mac",
       responses: attendanceResponses,
       plusOnes: [{ grantedToInviteeId: "a1", guestName: null, status: "attending" }],
     };

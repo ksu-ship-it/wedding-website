@@ -73,6 +73,7 @@ describe("guest invitation lookup", () => {
       versionId: "v1",
       respondedByInviteeId: "a1",
       contactEmail: null,
+      songRequest: "Dreams by Fleetwood Mac",
       submittedAt: "2026-09-30T12:00:00.000Z",
       updatedAt: "2026-09-30T12:00:00.000Z",
       responses: { a1: "attending" },

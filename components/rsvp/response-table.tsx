@@ -9,6 +9,7 @@ interface RsvpResponseRow {
   plusOneName: string | null;
   plusOneAttendance: string | null;
   contactEmail: string | null;
+  songRequest: string | null;
   versionId: string;
   submittedAt: string | null;
 }
@@ -67,6 +68,7 @@ export function RsvpResponseTable() {
                 <th className="py-3 pr-4">Attendance</th>
                 <th className="py-3 pr-4">Plus-one</th>
                 <th className="py-3 pr-4">Email</th>
+                <th className="py-3 pr-4">Song request</th>
                 <th className="py-3 pr-4">Roster version</th>
                 <th className="py-3">Updated</th>
               </tr>
@@ -83,6 +85,7 @@ export function RsvpResponseTable() {
                       : "—"}
                   </td>
                   <td className="py-3 pr-4">{row.contactEmail ?? "—"}</td>
+                  <td className="py-3 pr-4">{row.songRequest ?? "—"}</td>
                   <td className="py-3 pr-4">{row.versionId}</td>
                   <td className="py-3">{row.submittedAt ? new Date(row.submittedAt).toLocaleString() : "—"}</td>
                 </tr>

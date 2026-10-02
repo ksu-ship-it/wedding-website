@@ -49,6 +49,7 @@ function makeCsv(rows: Awaited<ReturnType<typeof getHostRsvpResponses>>): string
     "plus_one_name",
     "plus_one_attendance",
     "contact_email",
+    "song_request",
     "roster_version",
     "submitted_at",
   ] as const;
@@ -62,6 +63,7 @@ function makeCsv(rows: Awaited<ReturnType<typeof getHostRsvpResponses>>): string
       row.plusOneName,
       row.plusOneAttendance,
       row.contactEmail,
+      row.songRequest,
       row.versionId,
       row.submittedAt,
     ].map(csvCell).join(",")),

@@ -14,6 +14,7 @@ export interface HouseholdSubmissionWrite {
   versionId: string;
   respondedByInviteeId: string;
   contactEmail: string | null;
+  songRequest: string | null;
   responses: Record<string, AttendanceStatus>;
   plusOnes: PlusOneSubmission[];
 }
@@ -30,6 +31,7 @@ export interface HostRsvpResponseRow {
   plusOneName: string | null;
   plusOneAttendance: AttendanceStatus | null;
   contactEmail: string | null;
+  songRequest: string | null;
   versionId: string;
   submittedAt: string | null;
 }
@@ -158,6 +160,7 @@ export async function getHouseholdSubmission(
       submission.version_id AS "versionId",
       submission.responded_by_invitee_id AS "respondedByInviteeId",
       submission.contact_email AS "contactEmail",
+      submission.song_request AS "songRequest",
       submission.submitted_at AS "submittedAt",
       submission.updated_at AS "updatedAt",
       COALESCE(
@@ -207,6 +210,7 @@ export async function saveHouseholdSubmission(
       versionId: input.versionId,
       respondedByInviteeId: input.respondedByInviteeId,
       contactEmail: input.contactEmail,
+      songRequest: input.songRequest,
       submittedAt: previous?.submittedAt ?? timestamp,
       updatedAt: timestamp,
       responses: input.responses,
@@ -291,20 +295,23 @@ export async function saveHouseholdSubmission(
         household_id,
         version_id,
         responded_by_invitee_id,
-        contact_email
+        contact_email,
+        song_request
       )
       SELECT
         ${input.householdId},
         ${input.versionId},
         ${input.respondedByInviteeId},
-        ${input.contactEmail}
+        ${input.contactEmail},
+        ${input.songRequest}
       FROM complete_party
       ON CONFLICT (household_id, version_id) DO UPDATE SET
         responded_by_invitee_id = EXCLUDED.responded_by_invitee_id,
         contact_email = EXCLUDED.contact_email,
+        song_request = EXCLUDED.song_request,
         updated_at = NOW()
       RETURNING id, household_id, version_id, responded_by_invitee_id,
-        contact_email, submitted_at, updated_at
+        contact_email, song_request, submitted_at, updated_at
     ),
     saved_attendance AS (
       INSERT INTO attendance_responses (submission_id, invitee_id, status)
@@ -352,6 +359,7 @@ export async function saveHouseholdSubmission(
       saved_submission.version_id AS "versionId",
       saved_submission.responded_by_invitee_id AS "respondedByInviteeId",
       saved_submission.contact_email AS "contactEmail",
+      saved_submission.song_request AS "songRequest",
       saved_submission.submitted_at AS "submittedAt",
       saved_submission.updated_at AS "updatedAt",
       (SELECT jsonb_object_agg(invitee_id, status) FROM saved_attendance) AS responses,
@@ -517,6 +525,7 @@ export async function getHostRsvpResponses(): Promise<HostRsvpResponseRow[]> {
       plus_one.guest_name AS "plusOneName",
       plus_one.status AS "plusOneAttendance",
       submission.contact_email AS "contactEmail",
+      submission.song_request AS "songRequest",
       version.id AS "versionId",
       submission.updated_at AS "submittedAt"
     FROM invitees AS invitee

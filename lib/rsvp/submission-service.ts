@@ -23,6 +23,7 @@ export interface HouseholdSubmissionConfirmation {
   submissionId: string;
   submittedAt: string;
   updatedAt: string;
+  songRequest: HouseholdSubmissionRequest["songRequest"];
   responses: Record<string, AttendanceStatus>;
   plusOnes: HouseholdSubmissionRequest["plusOnes"];
 }
@@ -63,6 +64,7 @@ export async function submitHouseholdResponse(
     versionId: session.versionId,
     respondedByInviteeId: session.inviteeId,
     contactEmail: submission.contactEmail,
+    songRequest: submission.songRequest,
     responses: submission.responses,
     plusOnes: submission.plusOnes,
   });
@@ -71,6 +73,7 @@ export async function submitHouseholdResponse(
     submissionId: saved.id,
     submittedAt: saved.submittedAt,
     updatedAt: saved.updatedAt,
+    songRequest: saved.songRequest,
     responses: saved.responses,
     plusOnes: saved.plusOnes,
   };

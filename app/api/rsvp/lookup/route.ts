@@ -74,6 +74,7 @@ export async function POST(request: Request) {
         responses: currentSubmission?.responses ?? null,
         plusOnes: currentSubmission?.plusOnes ?? [],
         contactEmail: currentSubmission?.contactEmail ?? null,
+        songRequest: currentSubmission?.songRequest ?? null,
       },
       {
         headers: {

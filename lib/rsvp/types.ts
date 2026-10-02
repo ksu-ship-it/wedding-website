@@ -52,6 +52,7 @@ export interface RSVPSubmission {
   versionId: string;
   respondedByInviteeId: string;
   contactEmail: string | null;
+  songRequest: string | null;
   submittedAt: string;
   updatedAt: string;
 }
@@ -82,6 +83,7 @@ export interface GuestLookupRequest {
 
 export interface HouseholdSubmissionRequest {
   contactEmail: string | null;
+  songRequest: string | null;
   responses: Record<string, AttendanceStatus>;
   plusOnes: PlusOneSubmission[];
 }

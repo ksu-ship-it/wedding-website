@@ -21,6 +21,7 @@ type AttendanceStatus = "attending" | "declining" | "undecided";
 interface HouseholdConfirmation {
   submissionId: string;
   submittedAt: string;
+  songRequest: string | null;
   responses: Record<string, AttendanceStatus>;
   plusOnes: Array<{
     grantedToInviteeId: string;
@@ -44,6 +45,7 @@ export function GuestRsvpLookup() {
   const [responses, setResponses] = useState<Record<string, AttendanceStatus>>({});
   const [plusOnes, setPlusOnes] = useState<Record<string, PlusOneFormResponse>>({});
   const [contactEmail, setContactEmail] = useState("");
+  const [songRequest, setSongRequest] = useState("");
   const [confirmation, setConfirmation] = useState<HouseholdConfirmation | null>(null);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -66,6 +68,7 @@ export function GuestRsvpLookup() {
         responses?: Record<string, AttendanceStatus> | null;
         plusOnes?: HouseholdConfirmation["plusOnes"] | null;
         contactEmail?: string | null;
+        songRequest?: string | null;
       };
 
       if (!response.ok || !payload.household) {
@@ -75,8 +78,9 @@ export function GuestRsvpLookup() {
       }
 
       setHousehold(payload.household);
-  setResponses(payload.responses ?? {});
-  setContactEmail(payload.contactEmail ?? "");
+      setResponses(payload.responses ?? {});
+      setContactEmail(payload.contactEmail ?? "");
+      setSongRequest(payload.songRequest ?? "");
       setPlusOnes(
         Object.fromEntries(
           (payload.plusOnes ?? []).map((plusOne) => [
@@ -115,6 +119,7 @@ export function GuestRsvpLookup() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           contactEmail: normalizedEmail,
+          songRequest: songRequest.trim() || null,
           responses,
           plusOnes: Object.entries(plusOnes).map(([grantedToInviteeId, plusOne]) => ({
             grantedToInviteeId,
@@ -134,6 +139,7 @@ export function GuestRsvpLookup() {
       }
 
       setConfirmation(payload.confirmation);
+      setSongRequest(payload.confirmation.songRequest ?? "");
       setResponses(payload.confirmation.responses);
       setPlusOnes(
         Object.fromEntries(
@@ -240,6 +246,9 @@ export function GuestRsvpLookup() {
                     </li>
                   );
                 })}
+                {confirmation.songRequest ? (
+                  <li className="text-sm text-deep-blue">Song request: {confirmation.songRequest}</li>
+                ) : null}
               </ul>
               <button
                 type="button"
@@ -369,6 +378,21 @@ export function GuestRsvpLookup() {
                 />
                 <span className="mt-1 block text-xs font-normal text-deep-blue/65">
                   Only for host follow-up. You can leave this blank.
+                </span>
+              </label>
+
+              <label className="block border-t border-dusty-blue/30 pt-4 text-sm font-medium text-deep-blue">
+                Song request (optional)
+                <textarea
+                  value={songRequest}
+                  onChange={(event) => setSongRequest(event.target.value)}
+                  maxLength={250}
+                  rows={3}
+                  className="mt-2 min-h-[88px] w-full rounded-md border border-dusty-blue/40 bg-white px-3 py-2 text-base text-deep-blue outline-none focus:border-coral"
+                  placeholder=""
+                />
+                <span className="mt-1 block text-xs font-normal text-deep-blue/65">
+                  One song request per household
                 </span>
               </label>
 

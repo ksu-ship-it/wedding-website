@@ -36,6 +36,7 @@ const household: Invitee[] = [
 
 const request = {
   contactEmail: null,
+  songRequest: "Dreams by Fleetwood Mac",
   responses: { a1: "attending", a2: "undecided" },
   plusOnes: [],
 };
@@ -50,6 +51,7 @@ function createRepository() {
       versionId: string;
       respondedByInviteeId: string;
       contactEmail: string | null;
+      songRequest: string | null;
       responses: Record<string, AttendanceStatus>;
       plusOnes: { grantedToInviteeId: string; guestName: string | null; status: AttendanceStatus }[];
     }) => {
@@ -63,6 +65,7 @@ function createRepository() {
         versionId: input.versionId,
         respondedByInviteeId: input.respondedByInviteeId,
         contactEmail: input.contactEmail,
+        songRequest: input.songRequest,
         submittedAt: "2026-09-30T12:00:00.000Z",
         updatedAt: "2026-09-30T12:00:00.000Z",
         plusOnes: input.plusOnes,
@@ -83,6 +86,7 @@ describe("household RSVP submission", () => {
         versionId: "v1",
         respondedByInviteeId: "a1",
         responses: request.responses,
+        songRequest: "Dreams by Fleetwood Mac",
       }),
     );
     expect(result.responses).toEqual(request.responses);
