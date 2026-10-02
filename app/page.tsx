@@ -89,15 +89,6 @@ export default function Home() {
         </Section>
 
         <Section
-          id="gallery"
-          eyebrow="04 / Gallery"
-          title="A place for the memories."
-          intro=""
-        >
-          <MasonryGallery images={galleryImages} />
-        </Section>
-
-        <Section
           id="FAQ"
           eyebrow="05 / FAQ"
           title="A few useful answers."
@@ -128,6 +119,15 @@ export default function Home() {
               <GuestRsvpLookup />
             </div>
           </div>
+        </Section>
+
+        <Section
+          id="gallery"
+          eyebrow="07 / Gallery"
+          title="A place for the memories."
+          intro=""
+        >
+          <MasonryGallery images={galleryImages} />
         </Section>
         </main>
         <footer className="border-t border-dusty-blue/50 bg-cream px-6 py-10 md:px-10 lg:px-16">
