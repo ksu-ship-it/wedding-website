@@ -8,11 +8,6 @@ export const frequentlyAskedQuestions = [
     defaultOpen: true,
   },
   {
-    id: "parking",
-    question: "Is there parking available?",
-    answer: "Yes, complimentary parking will be available at the venue. Valet service will also be offered.",
-  },
-  {
     id: "indoor-or-outdoor",
     question: "Is the ceremony indoors or outdoors?",
     answer: "Our ceremony will take place outdoors, weather permitting. Please dress accordingly.",

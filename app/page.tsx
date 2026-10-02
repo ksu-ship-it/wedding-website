@@ -54,7 +54,7 @@ export default function Home() {
         <Section
           id="travel"
           eyebrow="03 / Travel"
-          title="Make a weekend of it."
+          title="The Event"
           intro=""
         >
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
