@@ -31,15 +31,15 @@ export function StorySlideshow({ images, moments }: StorySlideshowProps) {
           className="object-contain object-center transition-transform duration-[3000ms] ease-out group-hover:scale-[1.02]"
         />
       </figure>
-      <div className="flex items-center justify-between gap-4">
-        <div>
+      <div className="grid gap-4">
+        <div className="w-full text-center">
           <p className="text-xs uppercase tracking-[0.18em] text-copper">
             {activeIndex + 1} / {orderedMoments.length}
           </p>
           <h3 className="mt-2 font-serif text-3xl text-deep-blue">{moment.heading}</h3>
           <p className="mt-2 text-base leading-7 text-deep-blue/75">{moment.body}</p>
         </div>
-        <div className="flex shrink-0 gap-2">
+        <div className="flex justify-end gap-2">
           <button
             type="button"
             className="flex min-h-11 min-w-11 items-center justify-center border border-dusty-blue text-deep-blue disabled:cursor-not-allowed disabled:opacity-40"

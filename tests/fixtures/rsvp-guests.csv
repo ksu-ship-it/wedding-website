@@ -1,0 +1,11 @@
+invitee_id,household_id,first_name,last_name,plus_one_allowed
+alicia-001,household-01,Alicia,Anderson,true
+alicia-002,household-01,Brandon,Anderson,false
+carlos-001,household-02,Carlos,Nguyen,false
+carlos-002,household-02,Leah,Nguyen,true
+diana-001,household-03,Diana,Patel,true
+diana-002,household-03,Marcus,Patel,false
+evan-001,household-04,Evander,Price,true
+evan-002,household-04,Harper,Price,true
+frida-001,household-05,Frida,Lopez,false
+frida-002,household-05,Noah,Lopez,true

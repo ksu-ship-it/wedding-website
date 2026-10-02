@@ -9,11 +9,11 @@ import { galleryImages } from "@/content/gallery";
 import { heroImage, storyImages } from "@/content/images";
 import { navigationItems } from "@/content/navigation";
 import { rsvpPrompt } from "@/content/rsvp";
-import { schedule } from "@/content/schedule";
 import { storyMoments } from "@/content/story";
 import { hotelRecommendations, travelGuide } from "@/content/travel";
 import { weddingEvent } from "@/content/wedding-event";
 import { AccessGate } from "@/components/access/access-gate";
+import { GuestRsvpLookup } from "@/components/rsvp/guest-rsvp";
 
 export default function Home() {
   return (
@@ -118,18 +118,15 @@ export default function Home() {
         <Section
           id="RSVP"
           eyebrow="06 / RSVP"
-          title="Early RSVP, formal invitation to follow."
+          title="Find your invitation"
           intro=""
         >
           <div className="border-t border-dusty-blue/50 pt-5">
             <p className="text-sm uppercase tracking-[0.18em] text-copper">{rsvpPrompt.deadline}</p>
             <p className="mt-5 max-w-xl text-lg leading-8 text-deep-blue/80">{rsvpPrompt.instructions}</p>
-            <a
-              href={rsvpPrompt.destination}
-              className="mt-8 inline-flex min-h-11 items-center border-b-2 border-coral pb-2 text-sm font-medium text-deep-blue hover:text-coral"
-            >
-              {rsvpPrompt.actionLabel}
-            </a>
+            <div className="mt-8">
+              <GuestRsvpLookup />
+            </div>
           </div>
         </Section>
         </main>
