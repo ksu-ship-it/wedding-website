@@ -185,7 +185,7 @@ export function GuestRsvpLookup() {
               value={firstName}
               onChange={(event) => setFirstName(event.target.value)}
               className="mt-2 min-h-11 w-full rounded-md border border-dusty-blue/40 bg-cream px-3 py-2 text-base text-deep-blue outline-none ring-0 placeholder:text-deep-blue/40 focus:border-coral"
-              placeholder="Alicia"
+              placeholder=""
             />
           </label>
 
@@ -197,7 +197,7 @@ export function GuestRsvpLookup() {
               value={lastName}
               onChange={(event) => setLastName(event.target.value)}
               className="mt-2 min-h-11 w-full rounded-md border border-dusty-blue/40 bg-cream px-3 py-2 text-base text-deep-blue outline-none ring-0 placeholder:text-deep-blue/40 focus:border-coral"
-              placeholder="Anderson"
+              placeholder=""
             />
           </label>
           </div>

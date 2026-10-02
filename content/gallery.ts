@@ -16,23 +16,29 @@ const galleryRecords = [
   ["gallery-20260725-170935", "gallery-20260725-170935", "The couple together in a bright vertical portrait", "A bright little chapter in our story.", 1109, 2400, "galleryPortrait", 1109 / 2400],
       ["gallery-20260727-191420", "gallery-20260727-191420", "The couple together in a vertical portrait", "Another memory to carry forward.", 1109, 2400, "galleryPortrait", 1109 / 2400],
   ["gallery-20260727-185926", "gallery-20260727-185926", "The couple in a tall portrait outside", "A portrait of the life we are building.", 1531, 2400, "galleryPortrait", 1531 / 2400],
-  ["gallery-20260727-191745", "gallery-20260727-191745-1", "The couple sharing a joyful outdoor moment", "The joy is in the details.", 1109, 2400, "galleryPortrait", 1109 / 2400],
+  ["gallery-20260727-191100-1", "20260727_191100 (1).jpg", "The couple hugging together with their dog", "A favorite little chapter with Lenny.", 1242, 2208, "galleryPortrait", 1242 / 2208],
   ["gallery-20260727-193104", "gallery-20260727-193104", "The couple together in a tall outdoor portrait", "A moment that feels like home.", 1109, 2400, "galleryPortrait", 1109 / 2400],
   ["gallery-img-4678", "gallery-img-4678", "The couple together in a wide outdoor photograph", "One more beautiful place to remember.", 1600, 1067, "galleryLandscape", 3 / 2],
 ] as const;
 
-export const galleryImages = galleryRecords.map(([id, stem, alt, caption, width, height, slot, aspectRatio]) => ({
-  id,
-  src: `/images/gallery/${stem}.webp`,
-  mobileSrc: `/images/gallery/${stem}-mobile.webp`,
-  alt,
-  caption,
-  width,
-  height,
-  blurDataURL,
-  slot,
-  aspectRatio,
-  role: "gallery" as const,
-  status: "approved" as const,
-  sourcePath: `/images/gallery/${stem}.webp`,
-})) satisfies ImageAsset[];
+export const galleryImages = galleryRecords.map(([id, stem, alt, caption, width, height, slot, aspectRatio]) => {
+  const hasExplicitExtension = /\.[a-z0-9]+$/i.test(stem);
+  const src = hasExplicitExtension ? `/images/gallery/${stem}` : `/images/gallery/${stem}.webp`;
+  const mobileSrc = hasExplicitExtension ? src : `/images/gallery/${stem}-mobile.webp`;
+
+  return {
+    id,
+    src,
+    mobileSrc,
+    alt,
+    caption,
+    width,
+    height,
+    blurDataURL,
+    slot,
+    aspectRatio,
+    role: "gallery" as const,
+    status: "approved" as const,
+    sourcePath: src,
+  };
+}) satisfies ImageAsset[];
