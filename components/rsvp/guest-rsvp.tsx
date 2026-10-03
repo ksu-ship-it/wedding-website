@@ -392,7 +392,7 @@ export function GuestRsvpLookup() {
                   placeholder=""
                 />
                 <span className="mt-1 block text-xs font-normal text-deep-blue/65">
-                  One song request per household
+                  Help us build our wedding playlist!
                 </span>
               </label>
 
