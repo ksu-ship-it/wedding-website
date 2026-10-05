@@ -171,7 +171,7 @@ export function GuestRsvpLookup() {
         <p className="text-sm uppercase tracking-[0.18em] text-copper">Early RSVP</p>
         {/* <h3 className="mt-3 font-serif text-3xl text-deep-blue">Find your invitation</h3> */}
         <p className="mt-3 text-base leading-7 text-deep-blue/75">
-          Enter the first and last name from your invitation to view and submit your RSVP.
+          Enter the name from your invitation. A last name is optional if it is not listed.
         </p>
       </div>
 
@@ -196,10 +196,9 @@ export function GuestRsvpLookup() {
           </label>
 
           <label className="block text-sm font-medium text-deep-blue">
-            Last name
+            Last name (optional)
             <input
               type="text"
-              required
               value={lastName}
               onChange={(event) => setLastName(event.target.value)}
               className="mt-2 min-h-11 w-full rounded-md border border-dusty-blue/40 bg-cream px-3 py-2 text-base text-deep-blue outline-none ring-0 placeholder:text-deep-blue/40 focus:border-coral"

@@ -1,3 +1,6 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+
 import { describe, expect, it } from "vitest";
 
 import { parseGuestListCsv } from "@/lib/rsvp/guest-list-import";
@@ -32,6 +35,37 @@ const header = "invitee_id,household_id,first_name,last_name,plus_one_allowed,ho
       },
     ]);
     expect(preview.issues).toEqual([]);
+  });
+
+  it("accepts blank surnames and detects duplicate full names including blank surnames", () => {
+    const preview = parseGuestListCsv(
+      `${header}\n` +
+      "guest-1,party-1,Steve,,false,Steve household\n" +
+      "guest-2,party-1,Christina,Lorper,true,Steve household",
+    );
+
+    expect(preview.rows).toHaveLength(2);
+    expect(preview.rows[0].lastName).toBe("");
+    expect(preview.issues).toEqual([]);
+
+    const duplicate = parseGuestListCsv(
+      `${header}\n` +
+      "guest-1,party-1,Steve,,false,First household\n" +
+      "guest-2,party-2,steve,,false,Second household",
+    );
+    expect(duplicate.issues).toEqual(expect.arrayContaining([
+      expect.objectContaining({ field: "first_name", message: "Full name is duplicated in this guest list." }),
+    ]));
+  });
+
+  it("accepts the complete production guest-list CSV", () => {
+    const csv = readFileSync(resolve(process.cwd(), "tests/fixtures/rsvp-guests-prod.csv"), "utf8");
+    const preview = parseGuestListCsv(csv);
+
+    expect(preview.issues).toEqual([]);
+    expect(preview.rows).toHaveLength(111);
+    expect(preview.rows.find((row) => row.inviteeId === "ashley-michael-su")?.lastName).toBe("Chin");
+    expect(preview.rows.find((row) => row.inviteeId === "lawrence-stephanie-su")?.lastName).toBe("Chang");
   });
 
   it("reports empty, malformed, and missing-column files", () => {

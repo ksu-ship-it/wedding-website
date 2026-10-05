@@ -124,7 +124,6 @@ export function parseGuestListCsv(csv: string): GuestListImportPreview {
     if (!inviteeId) addIssue({ rowNumber, field: "invitee_id", message: "Invitee ID is required." });
     if (!householdId) addIssue({ rowNumber, field: "household_id", message: "Household is required." });
     if (!firstName) addIssue({ rowNumber, field: "first_name", message: "First name is required." });
-    if (!lastName) addIssue({ rowNumber, field: "last_name", message: "Last name is required." });
     if (firstName.length > 80) addIssue({ rowNumber, field: "first_name", message: "First name must be 80 characters or fewer." });
     if (lastName.length > 80) addIssue({ rowNumber, field: "last_name", message: "Last name must be 80 characters or fewer." });
 
@@ -142,7 +141,7 @@ export function parseGuestListCsv(csv: string): GuestListImportPreview {
       }
     }
 
-    if (firstName && lastName) {
+    if (firstName) {
       const normalizedName = `${normalizeGuestName(firstName)}\u0000${normalizeGuestName(lastName)}`;
       const previousRow = nameRows.get(normalizedName);
       if (previousRow) {

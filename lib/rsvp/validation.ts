@@ -115,13 +115,15 @@ export function parseGuestLookupRequest(input: unknown): GuestLookupRequest {
     throw new Error(firstNameError);
   }
 
-  const lastNameError = isValidName(record.lastName, "Last name");
-  if (lastNameError) {
-    throw new Error(lastNameError);
-  }
-
   const firstName = String(record.firstName).trim();
-  const lastName = String(record.lastName).trim();
+  const lastNameValue = record.lastName ?? "";
+  if (typeof lastNameValue !== "string") {
+    throw new Error("Last name must be a text value.");
+  }
+  const lastName = lastNameValue.trim();
+  if (lastName.length > MAX_NAME_LENGTH) {
+    throw new Error(`Last name must be ${MAX_NAME_LENGTH} characters or fewer.`);
+  }
 
   return {
     firstName,

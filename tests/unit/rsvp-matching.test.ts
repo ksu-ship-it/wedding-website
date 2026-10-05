@@ -48,4 +48,15 @@ describe("rsvp matching", () => {
       status: "not-found",
     });
   });
+
+  it("matches a guest whose roster entry has no last name", () => {
+    const roster: GuestRosterEntry[] = [
+      { id: "steve", householdId: "h1", firstName: "Steve", lastName: "", plusOneAllowed: false },
+    ];
+
+    expect(findGuestMatch(roster, "Steve", "")).toMatchObject({
+      status: "matched",
+      householdId: "h1",
+    });
+  });
 });

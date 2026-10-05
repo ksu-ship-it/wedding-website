@@ -12,11 +12,35 @@ describe("GuestRsvpLookup", () => {
     vi.unstubAllGlobals();
   });
 
-  it("requires both names before lookup", () => {
+  it("requires a first name but allows a missing last name", () => {
     render(<GuestRsvpLookup />);
 
     expect(screen.getByLabelText(/first name/i)).toBeRequired();
-    expect(screen.getByLabelText(/last name/i)).toBeRequired();
+    expect(screen.getByLabelText(/last name/i)).not.toBeRequired();
+  });
+
+  it("submits an empty last name for an invitation without a surname", async () => {
+    const fetchMock = vi.mocked(globalThis.fetch as typeof fetch);
+    fetchMock.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        household: {
+          householdId: "h1",
+          members: [{ id: "steve", firstName: "Steve", lastName: "", plusOneAllowed: false }],
+        },
+      }),
+    } as Response);
+
+    render(<GuestRsvpLookup />);
+    fireEvent.change(screen.getByLabelText(/first name/i), { target: { value: "Steve" } });
+    fireEvent.click(screen.getByRole("button", { name: /find my invitation/i }));
+
+    await waitFor(() => {
+      expect(fetchMock).toHaveBeenCalledWith("/api/rsvp/lookup", expect.objectContaining({
+        body: JSON.stringify({ firstName: "Steve", lastName: "" }),
+      }));
+      expect(screen.getByRole("group", { name: "Attendance for Steve" })).toBeInTheDocument();
+    });
   });
 
   it("shows pending feedback and disables duplicate lookup while waiting", async () => {
@@ -87,7 +111,7 @@ describe("GuestRsvpLookup", () => {
       expect(screen.getByText(/we couldn't find that invitation/i)).toBeInTheDocument();
     });
 
-    const instructions = screen.getByText(/enter the first and last name/i);
+    const instructions = screen.getByText(/enter the name from your invitation/i);
     const error = screen.getByRole("alert");
     const firstName = screen.getByLabelText(/first name/i);
 
